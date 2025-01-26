@@ -39,13 +39,11 @@ export class EmployeeListComponent {
 
   getAllEmployee() {
     storage.getItems({ table: 'employee' }).then((res: Array<Employee>) => {
-      if (res?.length) {
-        const previousEmployees = res.filter((employee) => employee.endDate);
-        const currentEmployees = res.filter((employee) => !employee.endDate);
-        this.employees.previous.set(previousEmployees);
-        this.employees.current.set(currentEmployees);
-        this.employees.total.set(res.length);
-      }
+      const previousEmployees = res.filter((employee) => employee.endDate);
+      const currentEmployees = res.filter((employee) => !employee.endDate);
+      this.employees.previous.set(previousEmployees);
+      this.employees.current.set(currentEmployees);
+      this.employees.total.set(res.length);
     });
   }
 

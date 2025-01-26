@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "/dist/employee-management-portal",
+    "public": "/dist/employee-management-system",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {

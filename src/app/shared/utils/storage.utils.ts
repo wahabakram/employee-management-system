@@ -1,6 +1,6 @@
 import localforage from 'localforage';
 
-const DB_NAME = 'employee-management-portal';
+const DB_NAME = 'employee-management-system';
 
 const employeeTable = localforage.createInstance({
   name: DB_NAME,

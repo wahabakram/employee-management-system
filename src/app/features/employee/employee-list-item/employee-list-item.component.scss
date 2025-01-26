@@ -1,0 +1,7 @@
+.list--item {
+    @apply mx-1 p-3 mb-5 flex items-center justify-between shadow-md rounded-md;
+
+    p {
+        @apply mb-2;
+    }
+}

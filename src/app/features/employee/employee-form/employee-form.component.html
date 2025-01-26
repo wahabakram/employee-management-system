@@ -1,0 +1,68 @@
+<h2 mat-dialog-title class="bg-primary !text-white">{{ title }}</h2>
+<mat-dialog-content class="mat-typography !py-8">
+    <form [formGroup]="form">
+        <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Employee name</mat-label>
+            <input matInput formControlName="name" placeholder="Employee name">
+            <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Select role</mat-label>
+            <mat-select formControlName="role">
+                <mat-option>Select</mat-option>
+                <mat-option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</mat-option>
+            </mat-select>
+            <mat-icon matPrefix>work</mat-icon>
+        </mat-form-field>
+
+        <div class="flex gap-3">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Today</mat-label>
+                <input matInput formControlName="joinDate" [matDatepicker]="joinDatepicker">
+                <mat-datepicker-toggle matIconPrefix [for]="joinDatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #joinDatepicker [calendarHeaderComponent]="joinDateHeaderComponent">
+                    <mat-datepicker-actions>
+                        <div class="flex justify-between w-full mt-5">
+                            <div class="flex items-center justify-center text-xs">
+                                <mat-icon class="mr-1 text-xs">event</mat-icon>
+                                <span>{{ date()['joinDate'] ? (date()['joinDate'] | date: 'd MMM y') : 'No date'
+                                    }}</span>
+                            </div>
+                            <div>
+                                <button class="text-xs" mat-stroked-button matDatepickerCancel>Cancel</button>
+                                <button class="text-xs" mat-stroked-button color="primary"
+                                    matDatepickerApply (click)="setDate('joinDate')">Save</button>
+                            </div>
+                        </div>
+                    </mat-datepicker-actions>
+                </mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>No date</mat-label>
+                <input matInput formControlName="endDate" [matDatepicker]="endDatepicker">
+                <mat-datepicker-toggle matIconPrefix [for]="endDatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDatepicker [calendarHeaderComponent]="endDateHeaderComponent">
+                    <mat-datepicker-actions>
+                        <div class="flex justify-between w-full mt-5">
+                            <div class="flex items-center justify-center text-xs">
+                                <mat-icon class="mr-1 text-xs">event</mat-icon>
+                                <span>{{ date()['endDate'] ? (date()['endDate'] | date: 'd MMM y') : 'No Date' }}</span>
+                            </div>
+                            <div>
+                                <button class="text-xs" mat-stroked-button matDatepickerCancel>Cancel</button>
+                                <button class="text-xs" mat-stroked-button color="primary"
+                                    matDatepickerApply (click)="setDate('endDate')">Save</button>
+                            </div>
+                        </div>
+                    </mat-datepicker-actions>
+                </mat-datepicker>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close>Cancel</button>
+    <button mat-stroked-button color="primary" cdkFocusInitial (click)="saveEmployee()">Save</button>
+</mat-dialog-actions>

@@ -1,0 +1,32 @@
+<!-- Employee list -->
+<div *ngIf="employees.total()" class="flex flex-col md:flex-row md:p-8">
+    <!-- Current -->
+    <section class="list w-full md:border-r-2">
+        <h3 class="list--title">Current employees</h3>
+        <div class="md:max-h-[80vh] overflow-y-auto">
+            <app-employee-list-item *ngFor="let employee of employees.current();" [item]="employee"
+                (onedit)="addEditEmployee($event)" (ondelete)="deleteEmployee($event)"></app-employee-list-item>
+        </div>
+    </section>
+    <!-- Previous -->
+    <section class="list w-full">
+        <h3 class="list--title">Previous employees</h3>
+        <div class="md:max-h-[80vh] overflow-y-auto">
+            <app-employee-list-item *ngFor="let employee of employees.previous();" [item]="employee"
+                (onedit)="addEditEmployee($event)" (ondelete)="deleteEmployee($event)"></app-employee-list-item>
+        </div>
+    </section>
+</div>
+
+<!-- No employees -->
+<div *ngIf="!employees.total()" class="w-full h-full flex flex-col items-center justify-center">
+    <img class="w-2/6 max-w-[380px] min-w-[230px]" src="assets/images/no-employee.svg" alt="No employee found"
+        srcset="">
+    <h3>No employee records found</h3>
+</div>
+
+<div class="fixed right-8 bottom-8">
+    <button mat-fab aria-label="Create employee" (click)="addEditEmployee()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>

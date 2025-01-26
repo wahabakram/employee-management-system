@@ -1,0 +1,27 @@
+<div *ngIf="item" class="list--item">
+    <div>
+        <p class="font-bold">{{ item.name }}</p>
+        <p class="text-secondary">{{ item.role }}</p>
+        <p *ngIf="item.endDate; else noEndDate" class="text-sm text-secondary">{{ item.joinDate | date: 'd MMM y' }} -
+            {{
+            item.endDate | date: 'd MMM y' }}</p>
+        <ng-template #noEndDate>
+            <p class="text-sm text-secondary">From {{ item.joinDate | date: 'd MMM y' }}</p>
+        </ng-template>
+    </div>
+    <div>
+        <button mat-icon-button aria-label="Edit" [matMenuTriggerFor]="menu">
+            <mat-icon color="primary">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item color="primary" aria-label="Edit" (click)="onedit.emit(item)">
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+            </button>
+            <button mat-menu-item color="primary" aria-label="Delete" (click)="ondelete.emit(item)">
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+            </button>
+        </mat-menu>
+    </div>
+</div>
